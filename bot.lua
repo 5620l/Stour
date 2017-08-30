@@ -3327,14 +3327,14 @@ function tdcli_update_callback(data)
                 if database:get('lang:gp:'..msg.chat_id_) then
                   send(msg.chat_id_, msg.id_, 1, "> Your ID : "..msg.sender_user_id_.."\n> Number of messages : "..user_msgs, 1, 'md')
                 else
-                  send(msg.chat_id_, msg.id_, 1, "> شناسه شما : "..msg.sender_user_id_.."\n> تعداد پیام های ارسالی شما : "..user_msgs, 1, 'md')
+                  send(msg.chat_id_, msg.id_, 1, "`>شناسه شما :` **"..msg.sender_user_id_.."*\n> `تعداد پیام های ارسالی شما :`*"..user_msgs, 1, 'md'*)
                 end
               end
               if not database:get('getidstatus'..msg.chat_id_) then
                 if database:get('lang:gp:'..msg.chat_id_) then
                   send(msg.chat_id_, msg.id_, 1, "> Your ID : "..msg.sender_user_id_.."\n> Number of messages : "..user_msgs, 1, 'md')
                 else
-                  send(msg.chat_id_, msg.id_, 1, "> شناسه شما : "..msg.sender_user_id_.."\n> تعداد پیام های ارسالی شما : "..user_msgs, 1, 'md')
+                  send(msg.chat_id_, msg.id_, 1, "`> شناسه شما : `*"..msg.sender_user_id_.."*\n>` تعداد پیام های ارسالی شما : `*"..user_msgs, 1, 'md'*)
                 end
               end
             end
@@ -5235,7 +5235,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
         end
         -----------------------------------------------------------------------------------------------
         if is_momod(msg.sender_user_id_, msg.chat_id_) then
-          if text:match("^[Ss]ettings$") or text:match("^$") then
+          if text:match("^[!/#][Ss]ettings$") or text:match("^تنظیمات$") then
             if database:get('bot:muteall'..msg.chat_id_) then
               mute_all = '✔️'
             else
@@ -5279,7 +5279,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
             end
             ------------
             if not database:get('bot:sens:spam'..msg.chat_id_) then
-              spam_c = 250
+              spam_c = 5
             else
               spam_c = database:get('bot:sens:spam'..msg.chat_id_)
             end
