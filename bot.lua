@@ -5433,39 +5433,39 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
             end
             ------------
             local TXTEN = "⚙ Group Settings :\n\n"
-            .."> *Strict Mode* : "..strict.."\n"
-            .."> *Group lock All* : "..mute_all.."\n"
-            .."> *Case of no answer* : "..mute_cmd.."\n\n"
-            .."🔃 *Centerial Settings* :\n\n"
-            .."> *Lock Spam* : "..lock_spam.."\n"
-            .."> *Lock Links* : "..mute_links.."\n"
-            .."️> *Lock Web-Page* :  "..lock_wp.."\n"
-            .."> *Lock Tag* : "..lock_tag.."\n"
-            .."️> *Lock Hashtag* : "..lock_htag.."\n"
-            .."> *Lock Forward* : "..lock_forward.."\n"
-            .."> *Lock Bots* :  "..mute_bots.."\n"
-            .."️> *Lock Edit* :  "..mute_edit.."\n"
-            .."️> *Lock Pin* : "..lock_pin.."\n"
-            .."> *Lock Inline* : "..mute_in.."\n"
-            .."> *Lock Farsi* :  "..lock_arabic.."\n"
-            .."> *Lock English* : "..lock_english.."\n"
-            .."> *Lock MarkDown* : "..markdown.."\n"
-            .."️> *Lock TgService* : "..lock_tgservice.."\n"
-            .."> *Lock Flood* : "..mute_flood.."\n"
-            .."> *Flood Status* : "..floodstatus.."\n"
-            .."> *Flood Sensitivity* : [ "..flood_m.." ]\n"
-            .."️> *Spam Sensitivity* : [ "..spam_c.." ]\n\n"
-            .." 🔃 *Media Settings* :\n\n"
-            .."> *Lock Text* : "..mute_text.."\n"
-            .."> *Lock Photo* : "..mute_photo.."\n"
-            .."> *Lock Videos* : "..mute_video.."\n"
-            .."> *Lock Gifs* : "..mute_gifs.."\n"
-            .."> *Lock Music* : "..mute_music.."\n"
-            .."> *Lock Voice* : "..mute_voice.."\n"
-            .."> *Lock File* : "..lock_file.."\n"
-            .."> *Lock Sticker* : "..lock_sticker.."\n"
-            .."> *Lock Contact* : "..lock_contact.."\n"
-            .."️> *Lock location* : "..lock_location.."\n"
+            .."> Strict Mode : "..strict.."\n"
+            .."> Group lock All : "..mute_all.."\n"
+            .."> Case of no answer : "..mute_cmd.."\n\n"
+            .."🔃 Centerial Settings :\n\n"
+            .."> Lock Spam : "..lock_spam.."\n"
+            .."> Lock Links : "..mute_links.."\n"
+            .."️> Lock Web-Page :  "..lock_wp.."\n"
+            .."> Lock Tag : "..lock_tag.."\n"
+            .."️> Lock Hashtag : "..lock_htag.."\n"
+            .."> Lock Forward : "..lock_forward.."\n"
+            .."> Lock Bots :  "..mute_bots.."\n"
+            .."️> Lock Edit :  "..mute_edit.."\n"
+            .."️> Lock Pin : "..lock_pin.."\n"
+            .."> Lock Inline : "..mute_in.."\n"
+            .."> Lock Farsi :  "..lock_arabic.."\n"
+            .."> Lock English : "..lock_english.."\n"
+            .."> Lock MarkDown : "..markdown.."\n"
+            .."️> Lock TgService : "..lock_tgservice.."\n"
+            .."> Lock Flood : "..mute_flood.."\n"
+            .."> Flood Status : "..floodstatus.."\n"
+            .."> Flood Sensitivity : [ "..flood_m.." ]\n"
+            .."️> Spam Sensitivity : [ "..spam_c.." ]\n\n"
+            .." 🔃 Media Settings* :\n\n"
+            .."> Lock Text : "..mute_text.."\n"
+            .."> Lock Photo : "..mute_photo.."\n"
+            .."> Lock Videos : "..mute_video.."\n"
+            .."> Lock Gifs : "..mute_gifs.."\n"
+            .."> Lock Music : "..mute_music.."\n"
+            .."> Lock Voice : "..mute_voice.."\n"
+            .."> Lock File : "..lock_file.."\n"
+            .."> Lock Sticker : "..lock_sticker.."\n"
+            .."> Lock Contact : "..lock_contact.."\n"
+            .."️> Lock location : "..lock_location.."\n"
             TXTEN = TXTEN:gsub("#فعال","Active")
             TXTEN = TXTEN:gsub("#غیرفعال","Inactive")
             TXTEN = TXTEN:gsub("حذف پیام","Deleting")
@@ -5575,7 +5575,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
         end
         -----------------------------------------------------------------------------------------------
         if is_momod(msg.sender_user_id_, msg.chat_id_) then
-          if text:match("^[!/#][Ee]xpire") or text:match("^اعتبار گروه") then
+          if text:match("^[!/#][Ee]xpire") or text:match("^انقضا") then
             local ex = database:ttl("bot:charge:"..msg.chat_id_)
             if ex == -1 then
               if database:get('lang:gp:'..msg.chat_id_) then
@@ -5695,7 +5695,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
             local txt = {string.match(text, "^([!/#][Aa]dd)$")}
             if database:get("bot:enable:"..msg.chat_id_) then
               if not database:get('lang:gp:'..msg.chat_id_) then
-                send(msg.chat_id_, msg.id_, 1, ' گروه از قبل در لیست مدیریتی ربات میباشد!`', 1,` 'md')
+                send(msg.chat_id_, msg.id_, 1, ' گروه از قبل در لیست مدیریتی ربات میباشد!', 1, 'md')
               else
                 send(msg.chat_id_, msg.id_, 1, '> This group is already in list management !', 1, 'md')
               end
@@ -5703,7 +5703,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
               if database:get('lang:gp:'..msg.chat_id_) then
                 send(msg.chat_id_, msg.id_, 1, '> This group has been added to list management !', 1, 'md')
               else
-                send(msg.chat_id_, msg.id_, 1, '> گروه به لیست مدیریتی ربات اضافه شد!`', 1,` 'md')
+                send(msg.chat_id_, msg.id_, 1, '> گروه به لیست مدیریتی ربات اضافه شد!', 1, 'md')
               end
             --  send(bot_owner, 0, 1, '> گروه جدیدی به لیست مدیریتی ربات اضافه شد !\n\n🌀 مشخصات همکار اضافه کننده :\n🔸آیدی همکار : '..msg.sender_user_id_..'\n🔸نام همکار : '..result.first_name_..'\n\n🌀مشخصات گروه :\n🔸 آیدی گروه : '..msg.chat_id_..'\n🔸نام گروه : '..chat.title_..'\n\n🔹اگر میخواهید ربات گروه را ترک کند از دستور زیر استفاده کنید : \n\n🔖 leave'..msg.chat_id_..'\n\n🔸اگر قصد وارد شدن به گروه را دارید از دستور زیر استفاده کنید : \n\n🔖 join'..msg.chat_id_..'\n\n🔅🔅🔅🔅🔅🔅\n\n📅 اگر قصد تمدید گروه را دارید از دستورات زیر استفاده کنید : \n\n⭕️برای شارژ به صورت یک ماه :\n🔖 plan1'..msg.chat_id_..'\n\n⭕️برای شارژ به صورت سه ماه :\n🔖 plan2'..msg.chat_id_..'\n\n⭕️برای شارژ به صورت نامحدود :\n🔖 plan3'..msg.chat_id_..'\n' , 1, 'html')
               database:set("bot:enable:"..msg.chat_id_,true)
