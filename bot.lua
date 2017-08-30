@@ -5269,7 +5269,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
             if database:get('anti-flood:'..msg.chat_id_) then
               mute_flood = '✔️'
             else
-              mute_flood = '✖️
+              mute_flood = '✖️'
             end
             ------------
             if not database:get('flood:max:'..msg.chat_id_) then
@@ -5301,7 +5301,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
             if database:get('bot:bots:mute'..msg.chat_id_) then
               mute_bots = '✔️'
             else
-              mute_bots = '#غیرفعال'
+              mute_bots = '✖️'
             end
             ------------
             if database:get('bot:inline:mute'..msg.chat_id_) then
