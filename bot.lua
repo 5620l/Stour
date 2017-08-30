@@ -2224,13 +2224,10 @@ function tdcli_update_callback(data)
             getMessage(msg.chat_id_, msg.reply_to_message_id_,unban_by_reply)
           end
         -----------------------------------------------------------------------------------------------
-	if msg.content_.ID == "MessageText" then
-        locl cerner= msg.content_.text_
-        if cerner == 'reload' then
-        dofile('./bot.lua')
-        send(msg.chat_id_,msg.id_,1,'`Done`\n*Bot Reloaded*',1,'md')
-        end
-        end			
+	if text == 'reload' then
+       dofile('./bot.lua') 
+send(msg.chat_id_, msg.id_, 1,"reload shod😐", 1, 'html')
+            end			
 	-----------------------------------------------------------------------------------------------
             if text:match("^[!/#][Uu]nban @(.*)$") then
             local ap = {string.match(text, "^([!/#][Uu]nban) @(.*)$")}
