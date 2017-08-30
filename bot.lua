@@ -3327,14 +3327,14 @@ function tdcli_update_callback(data)
                 if database:get('lang:gp:'..msg.chat_id_) then
                   send(msg.chat_id_, msg.id_, 1, "> Your ID : "..msg.sender_user_id_.."\n> Number of messages : "..user_msgs, 1, 'md')
                 else
-                  send(msg.chat_id_, msg.id_, 1, "`>شناسه شما :` *"..msg.sender_user_id_.."*\n> `تعداد پیام های ارسالی شما :`*"..user_msgs, 1, 'md')*
+                  send(msg.chat_id_, msg.id_, 1, "`>شناسه شما :` "..msg.sender_user_id_.."\n> `تعداد پیام های ارسالی شما :`"..user_msgs, 1, 'md')
                 end
               end
               if not database:get('getidstatus'..msg.chat_id_) then
                 if database:get('lang:gp:'..msg.chat_id_) then
                   send(msg.chat_id_, msg.id_, 1, "> Your ID : "..msg.sender_user_id_.."\n> Number of messages : "..user_msgs, 1, 'md')
                 else
-                  send(msg.chat_id_, msg.id_, 1, "`> شناسه شما : `*"..msg.sender_user_id_.."*\n>` تعداد پیام های ارسالی شما : `*"..user_msgs, 1, 'md')*
+                  send(msg.chat_id_, msg.id_, 1, "`> شناسه شما : `"..msg.sender_user_id_.."\n>` تعداد پیام های ارسالی شما : `"..user_msgs, 1, 'md')
                 end
               end
             end
@@ -5695,7 +5695,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
             local txt = {string.match(text, "^([!/#][Aa]dd)$")}
             if database:get("bot:enable:"..msg.chat_id_) then
               if not database:get('lang:gp:'..msg.chat_id_) then
-                send(msg.chat_id_, msg.id_, 1, ' گروه از قبل در لیست مدیریتی ربات میباشد !', 1, 'md')
+                send(msg.chat_id_, msg.id_, 1, ' گروه از قبل در لیست مدیریتی ربات میباشد!`', 1`, 'md')
               else
                 send(msg.chat_id_, msg.id_, 1, '> This group is already in list management !', 1, 'md')
               end
@@ -5703,7 +5703,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
               if database:get('lang:gp:'..msg.chat_id_) then
                 send(msg.chat_id_, msg.id_, 1, '> This group has been added to list management !', 1, 'md')
               else
-                send(msg.chat_id_, msg.id_, 1, '> گروه به لیست مدیریتی ربات اضافه شد !', 1, 'md')
+                send(msg.chat_id_, msg.id_, 1, '> گروه به لیست مدیریتی ربات اضافه شد!`', 1`, 'md')
               end
             --  send(bot_owner, 0, 1, '> گروه جدیدی به لیست مدیریتی ربات اضافه شد !\n\n🌀 مشخصات همکار اضافه کننده :\n🔸آیدی همکار : '..msg.sender_user_id_..'\n🔸نام همکار : '..result.first_name_..'\n\n🌀مشخصات گروه :\n🔸 آیدی گروه : '..msg.chat_id_..'\n🔸نام گروه : '..chat.title_..'\n\n🔹اگر میخواهید ربات گروه را ترک کند از دستور زیر استفاده کنید : \n\n🔖 leave'..msg.chat_id_..'\n\n🔸اگر قصد وارد شدن به گروه را دارید از دستور زیر استفاده کنید : \n\n🔖 join'..msg.chat_id_..'\n\n🔅🔅🔅🔅🔅🔅\n\n📅 اگر قصد تمدید گروه را دارید از دستورات زیر استفاده کنید : \n\n⭕️برای شارژ به صورت یک ماه :\n🔖 plan1'..msg.chat_id_..'\n\n⭕️برای شارژ به صورت سه ماه :\n🔖 plan2'..msg.chat_id_..'\n\n⭕️برای شارژ به صورت نامحدود :\n🔖 plan3'..msg.chat_id_..'\n' , 1, 'html')
               database:set("bot:enable:"..msg.chat_id_,true)
