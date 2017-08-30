@@ -3327,14 +3327,14 @@ function tdcli_update_callback(data)
                 if database:get('lang:gp:'..msg.chat_id_) then
                   send(msg.chat_id_, msg.id_, 1, "> Your ID : "..msg.sender_user_id_.."\n> Number of messages : "..user_msgs, 1, 'md')
                 else
-                  send(msg.chat_id_, msg.id_, 1, "`>شناسه شما :` "..msg.sender_user_id_.."\n> `تعداد پیام های ارسالی شما :`"..user_msgs, 1, 'md')
+                  send(msg.chat_id_, msg.id_, 1, "`>شناسه شما :` "..msg.sender_user_id_.."\n>`تعداد پیام های ارسالی شما :`"..user_msgs, 1, 'md')
                 end
               end
               if not database:get('getidstatus'..msg.chat_id_) then
                 if database:get('lang:gp:'..msg.chat_id_) then
                   send(msg.chat_id_, msg.id_, 1, "> Your ID : "..msg.sender_user_id_.."\n> Number of messages : "..user_msgs, 1, 'md')
                 else
-                  send(msg.chat_id_, msg.id_, 1, "`> شناسه شما : `"..msg.sender_user_id_.."\n>` تعداد پیام های ارسالی شما : `"..user_msgs, 1, 'md')
+                  send(msg.chat_id_, msg.id_, 1, "`>شناسه شما : `"..msg.sender_user_id_.."\n>`تعداد پیام های ارسالی شما : `"..user_msgs, 1, 'md')
                 end
               end
             end
@@ -5235,7 +5235,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
         end
         -----------------------------------------------------------------------------------------------
         if is_momod(msg.sender_user_id_, msg.chat_id_) then
-          if text:match("^[!/#][Ss]ettings$") or text:match("^تنظیمات$") then
+          if text:match("^[Ss]ettings$") or text:match("^تنظیمات$") then
             if database:get('bot:muteall'..msg.chat_id_) then
               mute_all = '✔️'
             else
@@ -5279,7 +5279,7 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
             end
             ------------
             if not database:get('bot:sens:spam'..msg.chat_id_) then
-              spam_c = 5
+              spam_c = 250
             else
               spam_c = database:get('bot:sens:spam'..msg.chat_id_)
             end
@@ -5432,40 +5432,74 @@ if text:match("^[!/#][Bb]roadcast (.*)$") and is_admin(msg.sender_user_id_, msg.
               send_welcome = '✖️'
             end
             ------------
+	    local TXTFA = "⚙ تنظیمات گروه :\n\n"
+            .."> حالت سختگیرانه : "..strict.."\n"
+            .."> حالت قفل کلی گروه : "..mute_all.."\n"
+            .."> حالت عدم جواب : "..mute_cmd.."\n\n"
+            .."🔃 قفل های اصلی :\n\n"
+            .."> قفل اسپم : "..lock_spam.."\n"
+            .."> قفل لینک : "..mute_links.."\n"
+            .."️> قفل آدرس اینترنتی :  "..lock_wp.."\n"
+            .."> قفل تگ : "..lock_tag.."\n"
+            .."️> قفل هشتگ : "..lock_htag.."\n"
+            .."> قفل فروارد : "..lock_forward.."\n"
+            .."> قفل ورود ربات :  "..mute_bots.."\n"
+            .."️> قفل ویرایش پیام :  "..mute_edit.."\n"
+            .."️> قفل سنجاق پیام : "..lock_pin.."\n"
+            .."> قفل دکمه شیشه ایی : "..mute_in.."\n"
+            .."> قفل نوشتار فارسی :  "..lock_arabic.."\n"
+            .."> قفل نوشتار انگلیسی : "..lock_english.."\n"
+            .."> قفل مدل نشانه گذاری : "..markdown.."\n"
+            .."️> قفل سرویس تلگرام : "..lock_tgservice.."\n"
+            .."> قفل فلود : "..mute_flood.."\n"
+            .."> وضعیت فلود : "..floodstatus.."\n"
+            .."> حساسیت فلود : [ "..flood_m.." ]\n"
+            .."️> حساسیت اسپم : [ "..spam_c.." ]\n\n"
+            .." 🔃قفل های رسانه :\n\n"
+            .."> قفل متن [ چت ] : "..mute_text.."\n"
+            .."> قفل عکس : "..mute_photo.."\n"
+            .."> قفل فیلم : "..mute_video.."\n"
+            .."> قفل گیف : "..mute_gifs.."\n"
+            .."> قفل موزیک : "..mute_music.."\n"
+            .."> قفل ویس : "..mute_voice.."\n"
+            .."> قفل فایل : "..lock_file.."\n"
+            .."> قفل استیکر : "..lock_sticker.."\n"
+            .."> قفل ارسال مخاطب : "..lock_contact.."\n"
+            .."️> قفل موقعیت مکانی : "..lock_location.."\n"	  					
             local TXTEN = "⚙ Group Settings :\n\n"
-            .."> Strict Mode : "..strict.."\n"
-            .."> Group lock All : "..mute_all.."\n"
-            .."> Case of no answer : "..mute_cmd.."\n\n"
-            .."🔃 Centerial Settings :\n\n"
-            .."> Lock Spam : "..lock_spam.."\n"
-            .."> Lock Links : "..mute_links.."\n"
-            .."️> Lock Web-Page :  "..lock_wp.."\n"
-            .."> Lock Tag : "..lock_tag.."\n"
-            .."️> Lock Hashtag : "..lock_htag.."\n"
-            .."> Lock Forward : "..lock_forward.."\n"
-            .."> Lock Bots :  "..mute_bots.."\n"
-            .."️> Lock Edit :  "..mute_edit.."\n"
-            .."️> Lock Pin : "..lock_pin.."\n"
-            .."> Lock Inline : "..mute_in.."\n"
-            .."> Lock Farsi :  "..lock_arabic.."\n"
-            .."> Lock English : "..lock_english.."\n"
-            .."> Lock MarkDown : "..markdown.."\n"
-            .."️> Lock TgService : "..lock_tgservice.."\n"
-            .."> Lock Flood : "..mute_flood.."\n"
-            .."> Flood Status : "..floodstatus.."\n"
-            .."> Flood Sensitivity : [ "..flood_m.." ]\n"
-            .."️> Spam Sensitivity : [ "..spam_c.." ]\n\n"
-            .." 🔃 Media Settings* :\n\n"
-            .."> Lock Text : "..mute_text.."\n"
-            .."> Lock Photo : "..mute_photo.."\n"
-            .."> Lock Videos : "..mute_video.."\n"
-            .."> Lock Gifs : "..mute_gifs.."\n"
-            .."> Lock Music : "..mute_music.."\n"
-            .."> Lock Voice : "..mute_voice.."\n"
-            .."> Lock File : "..lock_file.."\n"
-            .."> Lock Sticker : "..lock_sticker.."\n"
-            .."> Lock Contact : "..lock_contact.."\n"
-            .."️> Lock location : "..lock_location.."\n"
+            .."> *Strict Mode* : "..strict.."\n"
+            .."> *Group lock All* : "..mute_all.."\n"
+            .."> *Case of no answer* : "..mute_cmd.."\n\n"
+            .."🔃 *Centerial Settings* :\n\n"
+            .."> *Lock Spam* : "..lock_spam.."\n"
+            .."> *Lock Links* : "..mute_links.."\n"
+            .."️> *Lock Web-Page* :  "..lock_wp.."\n"
+            .."> *Lock Tag* : "..lock_tag.."\n"
+            .."️> *Lock Hashtag* : "..lock_htag.."\n"
+            .."> *Lock Forward* : "..lock_forward.."\n"
+            .."> *Lock Bots* :  "..mute_bots.."\n"
+            .."️> *Lock Edit* :  "..mute_edit.."\n"
+            .."️> *Lock Pin* : "..lock_pin.."\n"
+            .."> *Lock Inline* : "..mute_in.."\n"
+            .."> *Lock Farsi* :  "..lock_arabic.."\n"
+            .."> *Lock English* : "..lock_english.."\n"
+            .."> *Lock MarkDown* : "..markdown.."\n"
+            .."️> *Lock TgService* : "..lock_tgservice.."\n"
+            .."> *Lock Flood* : "..mute_flood.."\n"
+            .."> *Flood Status* : "..floodstatus.."\n"
+            .."> *Flood Sensitivity* : [ "..flood_m.." ]\n"
+            .."️> *Spam Sensitivity* : [ "..spam_c.." ]\n\n"
+            .." 🔃 *Media Settings* :\n\n"
+            .."> *Lock Text* : "..mute_text.."\n"
+            .."> *Lock Photo* : "..mute_photo.."\n"
+            .."> *Lock Videos* : "..mute_video.."\n"
+            .."> *Lock Gifs* : "..mute_gifs.."\n"
+            .."> *Lock Music* : "..mute_music.."\n"
+            .."> *Lock Voice* : "..mute_voice.."\n"
+            .."> *Lock File* : "..lock_file.."\n"
+            .."> *Lock Sticker* : "..lock_sticker.."\n"
+            .."> *Lock Contact* : "..lock_contact.."\n"
+            .."️> *Lock location* : "..lock_location.."\n"
             TXTEN = TXTEN:gsub("#فعال","Active")
             TXTEN = TXTEN:gsub("#غیرفعال","Inactive")
             TXTEN = TXTEN:gsub("حذف پیام","Deleting")
